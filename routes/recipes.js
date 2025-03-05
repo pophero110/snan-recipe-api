@@ -21,6 +21,20 @@ let getAllRecipes = async function (req, res, next) {
 
 router.get('/', getAllRecipes);
 
+let getRecipe = async function (req, res, next) {
+    try {
+        const recipeId = req.params.id
+        const collection = await getRecipeCollection();
+        const recipe = await collection.findOne({_id: new ObjectId(recipeId)});
+        res.json(recipe).status(200);
+    } catch (err) {
+        res.status(500).json({error: err.message})
+    }
+};
+
+router.get('/:id', getRecipe);
+
+
 async function createRecipe(req, res, next) {
     try {
         const newRecipe = req.body
