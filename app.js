@@ -6,6 +6,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const loggerMiddleware = require('./middleware/captureResponseBody')
+const cors = require('cors')
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ const port = process.env.PORT || 3000;
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use(cors())
 logger.token("req-body", req => JSON.stringify(req.body))
 app.use(logger(':method :url :status :response-time ms - req_payload :req-body'));
 app.use(loggerMiddleware)

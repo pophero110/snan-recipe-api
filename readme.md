@@ -13,3 +13,7 @@ https://www.freecodecamp.org/news/build-a-restful-api-using-node-express-and-mon
 # Mongo Express
 
 http://localhost:8081/db/snan-recipe-db/recipes
+
+# NoSQL
+
+Joins collection: https://medium.com/@rakeebnazar/joins-in-nosql-querying-related-collections-in-mongodb-using-populate-and-lookup-b1a0cf4da007#:~:text=Use%20%24lookup,that%20defines%20the%20join%20conditions.
