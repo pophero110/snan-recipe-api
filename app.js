@@ -1,7 +1,7 @@
 const createError = require('http-errors');
 const express = require('express');
 const dotenv = require('dotenv')
-const {closeDB} = require('./db/mongo')
+const {closeDB, connectDB} = require('./db/mongo')
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -49,8 +49,12 @@ app.use(function (err, req, res, next) {
     res.render('error');
 });
 
-const server = app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+const server = app.listen(port, async () => {
+    console.log(`Server listening on port ${port}`)
+    await connectDB().catch(error => {
+        console.log(error.message)
+        process.exit(0)
+    });
 })
 
 process.on("SIGINT", async () => {
